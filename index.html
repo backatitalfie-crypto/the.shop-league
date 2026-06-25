@@ -113,10 +113,31 @@ nav a:hover{
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
+.news-link{
+    text-decoration:none;
+    color:inherit;
+}
+
+.news-link:hover .card{
+    transform:translateY(-5px);
+    transition:0.25s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
 .card img{
     width:100%;
     height:180px;
     object-fit:cover;
+}
+
+.coming-soon-img{
+    height:180px;
+    background:#dddddd;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    color:#555;
 }
 
 .card-content{
@@ -136,6 +157,11 @@ nav a:hover{
     background:#e8ffe0;
     padding:50px;
     text-align:center;
+}
+
+.table-preview h2{
+    color:#7ED957;
+    margin-bottom:25px;
 }
 
 .league-table{
@@ -256,7 +282,6 @@ footer{
     .league-table td{
         padding:8px;
     }
-
 }
 </style>
 </head>
@@ -290,16 +315,18 @@ footer{
 
     <div class="news-grid">
 
-        <div class="card">
-            <img src="poundlandcelebration.png" alt="News">
-            <div class="card-content">
-                <h3>Poundland Shock League</h3>
-                <p>Poundland FC have made a stunning start and currently sit top of the Shop League.</p>
+        <a href="news.html#poundland-article" class="news-link">
+            <div class="card">
+                <img src="poundlandcelebration.png" alt="Poundland Celebration">
+                <div class="card-content">
+                    <h3>Poundland Shock League</h3>
+                    <p>Poundland FC have made a stunning start and currently sit top of the Shop League.</p>
+                </div>
             </div>
-        </div>
+        </a>
 
         <div class="card">
-            <img src="poundlandcelebration.png" alt="News">
+            <div class="coming-soon-img">Coming Soon</div>
             <div class="card-content">
                 <h3>Top Scorer Race</h3>
                 <p>Several players are already competing for the Golden Boot award.</p>
@@ -307,7 +334,7 @@ footer{
         </div>
 
         <div class="card">
-            <img src="poundlandcelebration.png" alt="News">
+            <div class="coming-soon-img">Coming Soon</div>
             <div class="card-content">
                 <h3>Match of the Week</h3>
                 <p>A thrilling clash is expected between two title contenders.</p>
