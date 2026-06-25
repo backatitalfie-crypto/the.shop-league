@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop League News</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* HEADER */
+
+header{
+    background:#7ED957;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* PAGE TITLE */
+
+.page-title{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.page-title h1{
+    color:#7ED957;
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.page-title p{
+    color:#666;
+}
+
+/* NEWS LIST */
+
+.news-container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding-bottom:50px;
+}
+
+.news-card{
+    background:white;
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.news-card:hover{
+    transform:translateY(-3px);
+}
+
+.news-card h2{
+    color:#7ED957;
+    margin-bottom:10px;
+}
+
+.news-card p{
+    color:#666;
+}
+
+/* ARTICLE VIEW */
+
+.article-view{
+    display:none;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.article-view h1{
+    color:#7ED957;
+    margin-bottom:15px;
+}
+
+.article-date{
+    color:#777;
+    margin-bottom:20px;
+}
+
+.article-image{
+    width:100%;
+    height:auto;
+    border-radius:8px;
+    margin-bottom:25px;
+    display:block;
+}
+}
+
+.back-btn{
+    background:#7ED957;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    cursor:pointer;
+    border-radius:5px;
+    margin-bottom:25px;
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    background:#69c547;
+}
+
+.article-view p{
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#7ED957;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+```
+<div class="logo">SHOP LEAGUE</div>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="fixtures.html">Fixtures</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><a href="news.html">News</a></li>
+    </ul>
+</nav>
+```
+
+</header>
+
+<section class="page-title">
+    <h1>Latest News</h1>
+    <p>Breaking stories from around the Shop League</p>
+</section>
+
+<div class="news-container">
+
+```
+<!-- NEWS LIST -->
+
+<div id="newsList">
+
+    <div class="news-card" onclick="openArticle('poundland')">
+        <h2>Poundland Shock League</h2>
+        <p>Expected to finish upper-midtable, Poundland FC have stormed to the summit...</p>
+    </div>
+
+    <div class="news-card" onclick="alert('Article coming soon!')">
+        <h2>Transfer Window Opens Soon</h2>
+        <p>Clubs prepare for the first transfer period in Shop League history.</p>
+    </div>
+
+    <div class="news-card" onclick="alert('Article coming soon!')">
+        <h2>Matchday 4 Preview</h2>
+        <p>A look ahead to the biggest fixtures this weekend.</p>
+    </div>
+
+</div>
+
+<!-- ARTICLE -->
+
+<div id="poundland" class="article-view">
+
+    <button class="back-btn" onclick="showNews()">
+        ← Back to News
+    </button>
+
+    <h1>Poundland Shock League</h1>
+
+    <div class="article-date">
+        Published: Matchday 3
+    </div>
+
+    <!-- REPLACE IMAGE FILE BELOW -->
+
+   <img src="images/poundlandcelebration.png"
+     alt="Poundland FC Celebration" width="1200" height="675"
+     class="article-image">
+    <p>
+        Poundland FC have become the surprise package of the Shop League season,
+        sitting top of the table after three matches despite many pre-season
+        predictions suggesting they would finish somewhere in the upper-midtable places.
+    </p>
+
+    <p>
+        While the season is still in its infancy, Poundland's perfect start has
+        caught supporters and pundits by surprise. Three wins from three matches,
+        twelve goals scored and none conceded has left them leading the division.
+    </p>
+
+    <p>
+        Their campaign began in spectacular fashion with a dominant 6-0 home victory
+        over Farmfoods Albion. The result immediately sent a message to the rest of
+        the league that Poundland would not simply be making up the numbers.
+    </p>
+
+    <p>
+        They followed that performance with another impressive display away from home,
+        defeating Co-Op Rovers 3-0 and maintaining their perfect defensive record.
+    </p>
+
+    <p>
+        However, their biggest statement came against one of the league favourites.
+        Aldi Rovers were tipped by many to challenge for the title this season, yet
+        Poundland brushed them aside with a commanding 3-0 victory.
+    </p>
+
+    <p>
+        The result has transformed expectations around the club. Fans who were hoping
+        for a respectable midtable finish are now daring to dream of a possible title
+        challenge, although club officials have urged caution.
+    </p>
+
+    <p>
+        Manager Sid Skittels praised his players after the victory over Aldi but was
+        quick to remind everyone that the season remains very young.
+    </p>
+
+    <p>
+        "It's a fantastic start and the players deserve all the credit," he said.
+        "But we've only played three matches. There's a long way to go and we have
+        to stay focused on improving every week."
+    </p>
+
+    <p>
+        Whether Poundland can maintain this remarkable form remains to be seen, but
+        after three matchdays they sit proudly at the summit of the Shop League and
+        have become the story everybody is talking about.
+    </p>
+
+</div>
+```
+
+</div>
+
+<footer>
+    © 2026 The Shop League
+</footer>
+
+<script>
+
+function openArticle(articleId){
+
+    document.getElementById("newsList").style.display = "none";
+
+    document.getElementById(articleId).style.display = "block";
+}
+
+function showNews(){
+
+    document.getElementById("newsList").style.display = "block";
+
+    document.getElementById("poundland").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
