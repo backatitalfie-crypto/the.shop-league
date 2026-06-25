@@ -4,19 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Shop League</title>
+
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:Arial, Helvetica, sans-serif;
-}
-.table-preview .table-button-container .table-btn {
-    background-color: #FFFFFF;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
 }
 
 body{
@@ -54,44 +48,12 @@ nav a{
 
 nav a:hover{
     color:#e8ffe0;
-	@media screen and (max-width:768px){
-
-header{
-    flex-wrap:wrap;
-    padding:15px;
-}
-
-.logo{
-    width:100%;
-    text-align:center;
-    margin-bottom:15px;
-}
-
-nav{
-    width:100%;
-}
-
-nav ul{
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
-}
-
-nav a{
-    display:block;
-    padding:8px 12px;
-    background:rgba(255,255,255,0.15);
-    border-radius:6px;
-}
-
-}
 }
 
 /* Hero Section */
 .hero{
     height:500px;
-    background:linear-gradient(rgba(126,217,87,0.7), rgba(126,217,87,0.7)),
-url("../Gym Website for home/gym_website/football-bg.jpg");
+    background:linear-gradient(rgba(126,217,87,0.7), rgba(126,217,87,0.7));
     background-size:cover;
     background-position:center;
     display:flex;
@@ -176,22 +138,48 @@ url("../Gym Website for home/gym_website/football-bg.jpg");
     text-align:center;
 }
 
-table{
+.league-table{
     width:100%;
-    max-width:800px;
+    max-width:1000px;
     margin:auto;
     border-collapse:collapse;
     background:white;
 }
 
-th{
+.league-table th{
     background:#7ED957;
     color:white;
 }
 
-th, td{
+.league-table th,
+.league-table td{
     padding:12px;
     border:1px solid #ddd;
+    text-align:center;
+}
+
+.league-table td:nth-child(2){
+    text-align:left;
+}
+
+.table-button-container{
+    text-align:center;
+    margin-top:25px;
+}
+
+.table-button-container a{
+    display:inline-block;
+    background:#7ED957;
+    color:white;
+    text-decoration:none;
+    padding:14px 30px;
+    border-radius:6px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.table-button-container a:hover{
+    background:#66c74a;
 }
 
 footer{
@@ -200,41 +188,79 @@ footer{
     text-align:center;
     padding:20px;
     margin-top:40px;
-	@media screen and (max-width:768px){
-
-header{
-    flex-wrap:wrap;
-    padding:15px;
 }
 
-.logo{
-    width:100%;
-    text-align:center;
-    margin-bottom:15px;
-}
+/* Mobile */
+@media screen and (max-width:768px){
 
-nav{
-    width:100%;
-}
+    header{
+        display:block;
+        text-align:center;
+        padding:20px;
+    }
 
-nav ul{
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
-}
+    .logo{
+        font-size:2rem;
+        margin-bottom:15px;
+    }
 
-nav a{
-    display:block;
-    padding:8px 12px;
-    background:rgba(255,255,255,0.15);
-    border-radius:6px;
-}
+    nav ul{
+        display:block;
+    }
 
-}
+    nav ul li{
+        margin:10px 0;
+    }
+
+    nav a{
+        display:block;
+        background:white;
+        color:#7ED957;
+        padding:10px;
+        border-radius:6px;
+    }
+
+    nav a:hover{
+        background:#e8ffe0;
+        color:#7ED957;
+    }
+
+    .hero{
+        height:auto;
+        padding:80px 20px;
+    }
+
+    .hero-content h1{
+        font-size:2.5rem;
+    }
+
+    .hero-content p{
+        font-size:1rem;
+    }
+
+    .section{
+        padding:40px 20px;
+    }
+
+    .table-preview{
+        padding:30px 10px;
+        overflow-x:auto;
+    }
+
+    .league-table{
+        font-size:0.85rem;
+        min-width:650px;
+    }
+
+    .league-table th,
+    .league-table td{
+        padding:8px;
+    }
+
 }
 </style>
-
 </head>
+
 <body>
 
 <header>
@@ -247,7 +273,6 @@ nav a{
             <li><a href="table.html">Table</a></li>
             <li><a href="teams.html">Teams</a></li>
             <li><a href="news.html">News</a></li>
-            <li><a href="#">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -255,7 +280,7 @@ nav a{
 <section class="hero">
     <div class="hero-content">
         <h1>THE SHOP LEAGUE</h1>
-        <p>The Home Of The Great League&nbsp;&nbsp;</p>
+        <p>The Home Of The Great League</p>
         <a href="fixtures.html" class="btn">View Fixtures</a>
     </div>
 </section>
@@ -266,15 +291,15 @@ nav a{
     <div class="news-grid">
 
         <div class="card">
-            <img src="../Gym Website for home/gym_website/news1.jpg" alt="News">
+            <img src="poundlandcelebration.png" alt="News">
             <div class="card-content">
-                <h3>Season Kicks Off</h3>
-                <p>The new Shop League season begins with exciting fixtures across the division.</p>
+                <h3>Poundland Shock League</h3>
+                <p>Poundland FC have made a stunning start and currently sit top of the Shop League.</p>
             </div>
         </div>
 
         <div class="card">
-            <img src="../Gym Website for home/gym_website/news2.jpg" alt="News">
+            <img src="poundlandcelebration.png" alt="News">
             <div class="card-content">
                 <h3>Top Scorer Race</h3>
                 <p>Several players are already competing for the Golden Boot award.</p>
@@ -282,7 +307,7 @@ nav a{
         </div>
 
         <div class="card">
-            <img src="../Gym Website for home/gym_website/news3.jpg" alt="News">
+            <img src="poundlandcelebration.png" alt="News">
             <div class="card-content">
                 <h3>Match of the Week</h3>
                 <p>A thrilling clash is expected between two title contenders.</p>
@@ -330,27 +355,10 @@ nav a{
     </table>
 
     <div class="table-button-container">
-  <a href="table.html"> View Full League Table → </a> </div>
+        <a href="table.html">View Full League Table →</a>
+    </div>
 
 </section>
-
-<script>
-const button = document.getElementById("toggleTable");
-const rows = document.querySelectorAll(".extra-row");
-
-button.addEventListener("click", function(){
-
-    rows.forEach(row => {
-        row.classList.toggle("show-row");
-    });
-
-    if(button.innerHTML.includes("Show Full")){
-        button.innerHTML = "▲ Hide Bottom Teams";
-    } else {
-        button.innerHTML = "▼ Show Full Table";
-    }
-});
-</script>
 
 <footer>
     <p>&copy; 2026 The Shop League. All Rights Reserved.</p>
