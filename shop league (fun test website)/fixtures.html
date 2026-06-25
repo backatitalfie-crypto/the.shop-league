@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop League Fixtures</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
+body{background:#f5f5f5;color:#222;}
+
+header{
+    background:#7ED957;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{font-size:2rem;font-weight:bold;}
+
+nav ul{display:flex;list-style:none;gap:20px;}
+nav a{color:white;text-decoration:none;font-weight:bold;}
+
+.page-title{text-align:center;padding:50px 20px 25px;}
+.page-title h1{color:#7ED957;font-size:3rem;}
+.page-title p{color:#666;margin-top:10px;}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding-bottom:50px;
+}
+
+.section-title{
+    color:#7ED957;
+    margin:30px 0 15px;
+    font-size:1.8rem;
+}
+
+.panel{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.match{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:15px;
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.match:last-child{border-bottom:none;}
+
+.team{
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.team:hover{
+    color:#7ED957;
+    text-decoration:underline;
+}
+
+.score{
+    background:#7ED957;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.vs{
+    color:#777;
+    font-weight:bold;
+}
+
+.away{text-align:right;}
+
+.gameweek-btn{
+    width:100%;
+    background:#7ED957;
+    color:white;
+    border:none;
+    padding:15px;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    border-radius:8px;
+    text-align:left;
+}
+
+.gameweek-content{
+    display:none;
+    background:white;
+    padding:15px 20px;
+    border-radius:0 0 8px 8px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.team-filter{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.team-filter button{
+    border:none;
+    background:white;
+    padding:10px 15px;
+    border-radius:20px;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    font-weight:bold;
+}
+
+.team-filter button:hover{
+    background:#7ED957;
+    color:white;
+}
+
+.clear-btn{
+    background:#7ED957!important;
+    color:white;
+}
+
+#teamView{
+    display:none;
+}
+
+.back-btn{
+    background:#7ED957;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    cursor:pointer;
+    border-radius:5px;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+footer{
+    background:#7ED957;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">SHOP LEAGUE</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="table.html">Table</a></li>
+            <li><a href="fixtures.html">Fixtures</a></li>
+            <li><a href="teams.html">Teams</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="page-title">
+    <h1>Fixtures & Results</h1>
+    <p>View every Shop League fixture or click a team to see their schedule</p>
+</section>
+
+<div class="container">
+
+    <h2 class="section-title">Choose a Team</h2>
+    <div id="teamButtons" class="team-filter"></div>
+
+    <div id="mainView">
+        <h2 class="section-title">Next Gameweek</h2>
+        <div id="nextGameweek" class="panel"></div>
+
+        <h2 class="section-title">Latest Results</h2>
+        <div id="latestResults" class="panel"></div>
+
+        <h2 class="section-title">Previous Results</h2>
+        <div id="previousResults"></div>
+
+        <h2 class="section-title">Upcoming Fixtures</h2>
+        <div id="upcomingFixtures"></div>
+    </div>
+
+    <div id="teamView">
+        <button class="back-btn" onclick="showMainView()">← Back to All Fixtures</button>
+        <h2 id="teamTitle" class="section-title"></h2>
+        <div id="teamFixtures" class="panel"></div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 The Shop League
+</footer>
+
+<script>
+const teams = [
+"Asda FC","Co-Op Rovers","Londis United","AFC Homebargains","Aldi Rovers",
+"Farmfoods Albion","B&Q Rovers","BM Albion","Poundstretcher Rovers",
+"Sainsbury's FC","Iceland Albion","Tesco FC","Argos United","M&S FC",
+"Smyths United","Sports Direct FC","Pets At Home United","Poundland FC",
+"AFC Morrisons","Lidl United"
+];
+
+let gameweeks = [
+{
+week:1,
+type:"results",
+matches:[
+["Iceland Albion","Poundstretcher Rovers",3,6],
+["Pets At Home United","Londis United",1,0],
+["AFC Morrisons","Co-Op Rovers",0,0],
+["Smyths United","Aldi Rovers",1,4],
+["Poundland FC","Farmfoods Albion",6,0],
+["Argos United","B&Q Rovers",2,1],
+["Sports Direct FC","BM Albion",3,0],
+["M&S FC","Sainsbury's FC",6,1],
+["Tesco FC","Asda FC",2,1],
+["Lidl United","AFC Homebargains",2,4]
+]
+},
+{
+week:2,
+type:"results",
+matches:[
+["Farmfoods Albion","M&S FC",1,1],
+["BM Albion","Tesco FC",0,1],
+["Co-Op Rovers","Poundland FC",0,3],
+["B&Q Rovers","Pets At Home United",0,0],
+["Londis United","Lidl United",0,2],
+["AFC Homebargains","Sports Direct FC",1,1],
+["Poundstretcher Rovers","Smyths United",1,2],
+["Iceland Albion","Argos United",1,0],
+["Aldi Rovers","AFC Morrisons",1,1],
+["Asda FC","Sainsbury's FC",2,2]
+]
+},
+{
+week:3,
+type:"results",
+matches:[
+["Pets At Home United","Iceland Albion",3,3],
+["M&S FC","Co-Op Rovers",3,1],
+["AFC Morrisons","Poundstretcher Rovers",1,1],
+["Sports Direct FC","Londis United",1,1],
+["Smyths United","Argos United",4,0],
+["Sainsbury's FC","Farmfoods Albion",4,1],
+["BM Albion","Asda FC",3,2],
+["Lidl United","B&Q Rovers",1,2],
+["Poundland FC","Aldi Rovers",3,0],
+["Tesco FC","AFC Homebargains",2,1]
+]
+},
+{
+week:4,
+type:"fixtures",
+matches:[
+["Asda FC","Farmfoods Albion"],["AFC Homebargains","BM Albion"],
+["Co-Op Rovers","Sainsbury's FC"],["Londis United","Tesco FC"],
+["Aldi Rovers","M&S FC"],["B&Q Rovers","Sports Direct FC"],
+["Poundstretcher Rovers","Poundland FC"],["Iceland Albion","Lidl United"],
+["Argos United","AFC Morrisons"],["Smyths United","Pets At Home United"]
+]
+},
+{
+week:5,
+type:"fixtures",
+matches:[
+["AFC Homebargains","Asda FC"],["Farmfoods Albion","Co-Op Rovers"],
+["BM Albion","Londis United"],["Sainsbury's FC","Aldi Rovers"],
+["Tesco FC","B&Q Rovers"],["M&S FC","Poundstretcher Rovers"],
+["Sports Direct FC","Iceland Albion"],["Poundland FC","Argos United"],
+["Lidl United","Smyths United"],["AFC Morrisons","Pets At Home United"]
+]
+},
+{
+week:6,
+type:"fixtures",
+matches:[
+["Asda FC","Co-Op Rovers"],["Londis United","AFC Homebargains"],
+["Aldi Rovers","Farmfoods Albion"],["B&Q Rovers","BM Albion"],
+["Poundstretcher Rovers","Sainsbury's FC"],["Iceland Albion","Tesco FC"],
+["Argos United","M&S FC"],["Smyths United","Sports Direct FC"],
+["Pets At Home United","Poundland FC"],["AFC Morrisons","Lidl United"]
+]
+},
+{
+week:7,
+type:"fixtures",
+matches:[
+["Londis United","Asda FC"],["Co-Op Rovers","Aldi Rovers"],
+["AFC Homebargains","B&Q Rovers"],["Farmfoods Albion","Poundstretcher Rovers"],
+["BM Albion","Iceland Albion"],["Sainsbury's FC","Argos United"],
+["Tesco FC","Smyths United"],["M&S FC","Pets At Home United"],
+["Sports Direct FC","AFC Morrisons"],["Poundland FC","Lidl United"]
+]
+},
+{
+week:8,
+type:"fixtures",
+matches:[
+["Asda FC","Aldi Rovers"],["B&Q Rovers","Londis United"],
+["Poundstretcher Rovers","Co-Op Rovers"],["Iceland Albion","AFC Homebargains"],
+["Argos United","Farmfoods Albion"],["Smyths United","BM Albion"],
+["Pets At Home United","Sainsbury's FC"],["AFC Morrisons","Tesco FC"],
+["Lidl United","M&S FC"],["Poundland FC","Sports Direct FC"]
+]
+},
+{
+week:9,
+type:"fixtures",
+matches:[
+["B&Q Rovers","Asda FC"],["Aldi Rovers","Poundstretcher Rovers"],
+["Londis United","Iceland Albion"],["Co-Op Rovers","Argos United"],
+["AFC Homebargains","Smyths United"],["Farmfoods Albion","Pets At Home United"],
+["BM Albion","AFC Morrisons"],["Sainsbury's FC","Lidl United"],
+["Tesco FC","Poundland FC"],["M&S FC","Sports Direct FC"]
+]
+},
+{
+week:10,
+type:"fixtures",
+matches:[
+["Asda FC","Poundstretcher Rovers"],["Iceland Albion","B&Q Rovers"],
+["Argos United","Aldi Rovers"],["Smyths United","Londis United"],
+["Pets At Home United","Co-Op Rovers"],["AFC Morrisons","AFC Homebargains"],
+["Lidl United","Farmfoods Albion"],["Poundland FC","BM Albion"],
+["Sports Direct FC","Sainsbury's FC"],["M&S FC","Tesco FC"]
+]
+}
+];
+
+const moreFixtures = [
+[11,[["Iceland Albion","Asda FC"],["Poundstretcher Rovers","Argos United"],["B&Q Rovers","Smyths United"],["Aldi Rovers","Pets At Home United"],["Londis United","AFC Morrisons"],["Co-Op Rovers","Lidl United"],["AFC Homebargains","Poundland FC"],["Farmfoods Albion","Sports Direct FC"],["BM Albion","M&S FC"],["Sainsbury's FC","Tesco FC"]]],
+[12,[["Asda FC","Argos United"],["Smyths United","Iceland Albion"],["Pets At Home United","Poundstretcher Rovers"],["AFC Morrisons","B&Q Rovers"],["Lidl United","Aldi Rovers"],["Poundland FC","Londis United"],["Sports Direct FC","Co-Op Rovers"],["M&S FC","AFC Homebargains"],["Tesco FC","Farmfoods Albion"],["Sainsbury's FC","BM Albion"]]],
+[13,[["Smyths United","Asda FC"],["Argos United","Pets At Home United"],["Iceland Albion","AFC Morrisons"],["Poundstretcher Rovers","Lidl United"],["B&Q Rovers","Poundland FC"],["Aldi Rovers","Sports Direct FC"],["Londis United","M&S FC"],["Co-Op Rovers","Tesco FC"],["AFC Homebargains","Sainsbury's FC"],["Farmfoods Albion","BM Albion"]]],
+[14,[["Asda FC","Pets At Home United"],["AFC Morrisons","Smyths United"],["Lidl United","Argos United"],["Poundland FC","Iceland Albion"],["Sports Direct FC","Poundstretcher Rovers"],["M&S FC","B&Q Rovers"],["Tesco FC","Aldi Rovers"],["Sainsbury's FC","Londis United"],["BM Albion","Co-Op Rovers"],["Farmfoods Albion","AFC Homebargains"]]],
+[15,[["AFC Morrisons","Asda FC"],["Pets At Home United","Lidl United"],["Smyths United","Poundland FC"],["Argos United","Sports Direct FC"],["Iceland Albion","M&S FC"],["Poundstretcher Rovers","Tesco FC"],["B&Q Rovers","Sainsbury's FC"],["Aldi Rovers","BM Albion"],["Londis United","Farmfoods Albion"],["Co-Op Rovers","AFC Homebargains"]]],
+[16,[["Asda FC","Lidl United"],["Poundland FC","AFC Morrisons"],["Sports Direct FC","Pets At Home United"],["M&S FC","Smyths United"],["Tesco FC","Argos United"],["Sainsbury's FC","Iceland Albion"],["BM Albion","Poundstretcher Rovers"],["Farmfoods Albion","B&Q Rovers"],["AFC Homebargains","Aldi Rovers"],["Co-Op Rovers","Londis United"]]],
+[17,[["Poundland FC","Asda FC"],["Lidl United","Sports Direct FC"],["AFC Morrisons","M&S FC"],["Pets At Home United","Tesco FC"],["Smyths United","Sainsbury's FC"],["Argos United","BM Albion"],["Iceland Albion","Farmfoods Albion"],["Poundstretcher Rovers","AFC Homebargains"],["B&Q Rovers","Co-Op Rovers"],["Aldi Rovers","Londis United"]]],
+[18,[["Asda FC","Sports Direct FC"],["M&S FC","Poundland FC"],["Tesco FC","Lidl United"],["Sainsbury's FC","AFC Morrisons"],["BM Albion","Pets At Home United"],["Farmfoods Albion","Smyths United"],["AFC Homebargains","Argos United"],["Co-Op Rovers","Iceland Albion"],["Londis United","Poundstretcher Rovers"],["Aldi Rovers","B&Q Rovers"]]],
+[19,[["M&S FC","Asda FC"],["Sports Direct FC","Tesco FC"],["Poundland FC","Sainsbury's FC"],["Lidl United","BM Albion"],["AFC Morrisons","Farmfoods Albion"],["Pets At Home United","AFC Homebargains"],["Smyths United","Co-Op Rovers"],["Argos United","Londis United"],["Iceland Albion","Aldi Rovers"],["Poundstretcher Rovers","B&Q Rovers"]]]
+];
+
+moreFixtures.forEach(gw => {
+    gameweeks.push({week:gw[0], type:"fixtures", matches:gw[1]});
+});
+
+for(let i = 0; i < 19; i++){
+    const original = gameweeks[i];
+    const reversed = original.matches.map(match => [match[1], match[0]]);
+    gameweeks.push({
+        week: original.week + 19,
+        type:"fixtures",
+        matches: reversed
+    });
+}
+
+function createMatch(match, type, week){
+    const div = document.createElement("div");
+    div.className = "match";
+
+    const home = document.createElement("span");
+    home.className = "team";
+    home.textContent = match[0];
+    home.onclick = () => showTeam(match[0]);
+
+    const centre = document.createElement("span");
+    if(type === "results" && match.length === 4){
+        centre.className = "score";
+        centre.textContent = match[2] + " - " + match[3];
+    } else {
+        centre.className = "vs";
+        centre.textContent = "vs";
+    }
+
+    const away = document.createElement("span");
+    away.className = "team away";
+    away.textContent = match[1];
+    away.onclick = () => showTeam(match[1]);
+
+    div.appendChild(home);
+    div.appendChild(centre);
+    div.appendChild(away);
+
+    return div;
+}
+
+function renderPanel(container, gw){
+    container.innerHTML = "";
+    gw.matches.forEach(match => {
+        container.appendChild(createMatch(match, gw.type, gw.week));
+    });
+}
+
+function renderAccordion(container, weeks){
+    container.innerHTML = "";
+
+    weeks.forEach(gw => {
+        const btn = document.createElement("button");
+        btn.className = "gameweek-btn";
+        btn.textContent = "▶ Gameweek " + gw.week;
+
+        const content = document.createElement("div");
+        content.className = "gameweek-content";
+
+        gw.matches.forEach(match => {
+            content.appendChild(createMatch(match, gw.type, gw.week));
+        });
+
+        btn.onclick = function(){
+            if(content.style.display === "block"){
+                content.style.display = "none";
+                btn.textContent = "▶ Gameweek " + gw.week;
+            } else {
+                content.style.display = "block";
+                btn.textContent = "▼ Gameweek " + gw.week;
+            }
+        };
+
+        container.appendChild(btn);
+        container.appendChild(content);
+    });
+}
+
+function renderPage(){
+    const next = gameweeks.find(gw => gw.type === "fixtures");
+    renderPanel(document.getElementById("nextGameweek"), next);
+
+    const results = gameweeks.filter(gw => gw.type === "results");
+    const latest = results[results.length - 1];
+    renderPanel(document.getElementById("latestResults"), latest);
+
+    renderAccordion(document.getElementById("previousResults"), results.slice().reverse());
+    renderAccordion(document.getElementById("upcomingFixtures"), gameweeks.filter(gw => gw.type === "fixtures"));
+}
+
+function renderTeamButtons(){
+    const box = document.getElementById("teamButtons");
+
+    teams.forEach(team => {
+        const btn = document.createElement("button");
+        btn.textContent = team;
+        btn.onclick = () => showTeam(team);
+        box.appendChild(btn);
+    });
+}
+
+function showTeam(team){
+    document.getElementById("mainView").style.display = "none";
+    document.getElementById("teamView").style.display = "block";
+    document.getElementById("teamTitle").textContent = team + " Fixtures & Results";
+
+    const box = document.getElementById("teamFixtures");
+    box.innerHTML = "";
+
+    gameweeks.forEach(gw => {
+        gw.matches.forEach(match => {
+            if(match[0] === team || match[1] === team){
+                const label = document.createElement("h3");
+                label.style.color = "#7ED957";
+                label.style.marginTop = "20px";
+                label.textContent = "Gameweek " + gw.week;
+                box.appendChild(label);
+                box.appendChild(createMatch(match, gw.type, gw.week));
+            }
+        });
+    });
+
+    window.scrollTo(0,0);
+}
+
+function showMainView(){
+    document.getElementById("teamView").style.display = "none";
+    document.getElementById("mainView").style.display = "block";
+    window.scrollTo(0,0);
+}
+
+renderTeamButtons();
+renderPage();
+</script>
+
+</body>
+</html>

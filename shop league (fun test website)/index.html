@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Shop League</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.table-preview .table-button-container .table-btn {
+    background-color: #FFFFFF;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+body{
+    background:#ffffff;
+    color:#222;
+}
+
+/* Header */
+header{
+    background:#7ED957;
+    color:white;
+    padding:20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#e8ffe0;
+}
+
+/* Hero Section */
+.hero{
+    height:500px;
+    background:linear-gradient(rgba(126,217,87,0.7), rgba(126,217,87,0.7)),
+url("../Gym Website for home/gym_website/football-bg.jpg");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-content h1{
+    font-size:4rem;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:1.2rem;
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 25px;
+    background:white;
+    color:#7ED957;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#f2f2f2;
+}
+
+/* News Section */
+.section{
+    padding:60px 10%;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#7ED957;
+    font-size:2rem;
+}
+
+.news-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#f8f8f8;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    color:#555;
+}
+
+/* League Table Preview */
+.table-preview{
+    background:#e8ffe0;
+    padding:50px;
+    text-align:center;
+}
+
+table{
+    width:100%;
+    max-width:800px;
+    margin:auto;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#7ED957;
+    color:white;
+}
+
+th, td{
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+footer{
+    background:#7ED957;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">SHOP LEAGUE</div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="fixtures.html">Fixtures</a></li>
+            <li><a href="table.html">Table</a></li>
+            <li><a href="teams.html">Teams</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>THE SHOP LEAGUE</h1>
+        <p>The Home Of The Great League&nbsp;&nbsp;</p>
+        <a href="fixtures.html" class="btn">View Fixtures</a>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Latest News</h2>
+
+    <div class="news-grid">
+
+        <div class="card">
+            <img src="../Gym Website for home/gym_website/news1.jpg" alt="News">
+            <div class="card-content">
+                <h3>Season Kicks Off</h3>
+                <p>The new Shop League season begins with exciting fixtures across the division.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="../Gym Website for home/gym_website/news2.jpg" alt="News">
+            <div class="card-content">
+                <h3>Top Scorer Race</h3>
+                <p>Several players are already competing for the Golden Boot award.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="../Gym Website for home/gym_website/news3.jpg" alt="News">
+            <div class="card-content">
+                <h3>Match of the Week</h3>
+                <p>A thrilling clash is expected between two title contenders.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="table-preview">
+    <h2>League Table</h2>
+
+    <table class="league-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Club</th>
+                <th>P</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GD</th>
+                <th>Pts</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr><td>1</td><td>Poundland FC</td><td>3</td><td>3</td><td>0</td><td>0</td><td>12</td><td><b>9</b></td></tr>
+            <tr><td>2</td><td>Tesco FC</td><td>3</td><td>3</td><td>0</td><td>0</td><td>3</td><td><b>9</b></td></tr>
+            <tr><td>3</td><td>M&amp;S FC</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td><td><b>7</b></td></tr>
+            <tr><td>4</td><td>Smyths United</td><td>3</td><td>2</td><td>0</td><td>1</td><td>2</td><td><b>6</b></td></tr>
+            <tr><td>5</td><td>Sports Direct FC</td><td>3</td><td>1</td><td>2</td><td>0</td><td>3</td><td><b>5</b></td></tr>
+            <tr><td>6</td><td>Pets At Home United</td><td>3</td><td>1</td><td>2</td><td>0</td><td>1</td><td><b>5</b></td></tr>
+            <tr><td>7</td><td>Poundstretcher Rovers</td><td>3</td><td>1</td><td>1</td><td>1</td><td>2</td><td><b>4</b></td></tr>
+            <tr><td>8</td><td>AFC Homebargains</td><td>3</td><td>1</td><td>1</td><td>1</td><td>1</td><td><b>4</b></td></tr>
+            <tr><td>9</td><td>Aldi Rovers</td><td>3</td><td>1</td><td>1</td><td>1</td><td>0</td><td><b>4</b></td></tr>
+            <tr><td>10</td><td>B&amp;Q Rovers</td><td>3</td><td>1</td><td>1</td><td>1</td><td>0</td><td><b>4</b></td></tr>
+            <tr><td>11</td><td>Iceland Albion</td><td>3</td><td>1</td><td>1</td><td>1</td><td>-2</td><td><b>4</b></td></tr>
+            <tr><td>12</td><td>Sainsbury's FC</td><td>3</td><td>1</td><td>1</td><td>1</td><td>-2</td><td><b>4</b></td></tr>
+            <tr><td>13</td><td>AFC Morrisons</td><td>3</td><td>0</td><td>3</td><td>0</td><td>0</td><td><b>3</b></td></tr>
+            <tr><td>14</td><td>Lidl United</td><td>3</td><td>1</td><td>0</td><td>2</td><td>-1</td><td><b>3</b></td></tr>
+            <tr><td>15</td><td>BM Albion</td><td>3</td><td>1</td><td>0</td><td>2</td><td>-3</td><td><b>3</b></td></tr>
+            <tr><td>16</td><td>Argos United</td><td>3</td><td>1</td><td>0</td><td>2</td><td>-4</td><td><b>3</b></td></tr>
+        </tbody>
+    </table>
+
+    <div class="table-button-container">
+  <a href="table.html"> View Full League Table → </a> </div>
+
+</section>
+
+<script>
+const button = document.getElementById("toggleTable");
+const rows = document.querySelectorAll(".extra-row");
+
+button.addEventListener("click", function(){
+
+    rows.forEach(row => {
+        row.classList.toggle("show-row");
+    });
+
+    if(button.innerHTML.includes("Show Full")){
+        button.innerHTML = "▲ Hide Bottom Teams";
+    } else {
+        button.innerHTML = "▼ Show Full Table";
+    }
+});
+</script>
+
+<footer>
+    <p>&copy; 2026 The Shop League. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
