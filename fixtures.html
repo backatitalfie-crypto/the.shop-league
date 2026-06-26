@@ -153,6 +153,89 @@ footer{
     color:white;
     text-align:center;
     padding:20px;
+}/* ================= MOBILE ================= */
+
+@media screen and (max-width:768px){
+
+header{
+    display:block;
+    text-align:center;
+    padding:20px;
+}
+
+.logo{
+    margin-bottom:15px;
+    font-size:2rem;
+}
+
+nav ul{
+    display:block;
+    padding:0;
+}
+
+nav ul li{
+    margin:10px 0;
+}
+
+nav a{
+    display:block;
+    background:white;
+    color:#7ED957;
+    padding:10px;
+    border-radius:6px;
+}
+
+.page-title{
+    padding:35px 15px 20px;
+}
+
+.page-title h1{
+    font-size:2.3rem;
+}
+
+.container{
+    width:95%;
+}
+
+.section-title{
+    font-size:1.4rem;
+}
+
+.match{
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:8px;
+}
+
+.away{
+    text-align:center;
+}
+
+.score,
+.vs{
+    margin:5px auto;
+}
+
+.team-filter{
+    justify-content:center;
+}
+
+.team-filter button{
+    width:100%;
+}
+
+.gameweek-btn{
+    font-size:0.95rem;
+}
+
+.panel{
+    padding:15px;
+}
+
+footer{
+    padding:20px;
+}
+
 }
 </style>
 </head>
@@ -173,13 +256,13 @@ footer{
 </header>
 
 <section class="page-title">
-    <h1>Fixtures & Results</h1>
+    <h1>Fixture &amp; Results</h1>
     <p>View every Shop League fixture or click a team to see their schedule</p>
 </section>
 
 <div class="container">
 
-    <h2 class="section-title">Choose a Team</h2>
+  <h2 class="section-title">Choose a Team</h2>
     <div id="teamButtons" class="team-filter"></div>
 
     <div id="mainView">
