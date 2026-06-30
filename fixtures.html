@@ -128,14 +128,7 @@ nav a{color:white;text-decoration:none;font-weight:bold;}
     color:white;
 }
 
-.clear-btn{
-    background:#7ED957!important;
-    color:white;
-}
-
-#teamView{
-    display:none;
-}
+#teamView{display:none;}
 
 .back-btn{
     background:#7ED957;
@@ -153,89 +146,90 @@ footer{
     color:white;
     text-align:center;
     padding:20px;
-}/* ================= MOBILE ================= */
+}
 
+/* MOBILE */
 @media screen and (max-width:768px){
 
-header{
-    display:block;
-    text-align:center;
-    padding:20px;
-}
+    header{
+        display:block;
+        text-align:center;
+        padding:20px;
+    }
 
-.logo{
-    margin-bottom:15px;
-    font-size:2rem;
-}
+    .logo{
+        margin-bottom:15px;
+        font-size:2rem;
+    }
 
-nav ul{
-    display:block;
-    padding:0;
-}
+    nav ul{
+        display:block;
+        padding:0;
+    }
 
-nav ul li{
-    margin:10px 0;
-}
+    nav ul li{
+        margin:10px 0;
+    }
 
-nav a{
-    display:block;
-    background:white;
-    color:#7ED957;
-    padding:10px;
-    border-radius:6px;
-}
+    nav a{
+        display:block;
+        background:white;
+        color:#7ED957;
+        padding:10px;
+        border-radius:6px;
+    }
 
-.page-title{
-    padding:35px 15px 20px;
-}
+    nav a:hover{
+        background:#e8ffe0;
+        color:#7ED957;
+    }
 
-.page-title h1{
-    font-size:2.3rem;
-}
+    .page-title{
+        padding:35px 15px 20px;
+    }
 
-.container{
-    width:95%;
-}
+    .page-title h1{
+        font-size:2.3rem;
+    }
 
-.section-title{
-    font-size:1.4rem;
-}
+    .container{
+        width:95%;
+    }
 
-.match{
-    grid-template-columns:1fr;
-    text-align:center;
-    gap:8px;
-}
+    .section-title{
+        font-size:1.4rem;
+    }
 
-.away{
-    text-align:center;
-}
+    .match{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:8px;
+    }
 
-.score,
-.vs{
-    margin:5px auto;
-}
+    .away{
+        text-align:center;
+    }
 
-.team-filter{
-    justify-content:center;
-}
+    .score,
+    .vs{
+        margin:5px auto;
+    }
 
-.team-filter button{
-    width:100%;
-}
+    .team-filter{
+        justify-content:center;
+    }
 
-.gameweek-btn{
-    font-size:0.95rem;
-}
+    .team-filter button{
+        width:100%;
+    }
 
-.panel{
-    padding:15px;
-}
+    .gameweek-btn{
+        font-size:0.95rem;
+    }
 
-footer{
-    padding:20px;
-}
-
+    .panel{
+        padding:15px;
+    }
 }
 </style>
 </head>
@@ -245,6 +239,7 @@ footer{
 <header>
     <div class="logo">SHOP LEAGUE</div>
     <nav>
+
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="table.html">Table</a></li>
@@ -256,13 +251,13 @@ footer{
 </header>
 
 <section class="page-title">
-    <h1>Fixture &amp; Results</h1>
+    <h1>Fixtures &amp; Results</h1>
     <p>View every Shop League fixture or click a team to see their schedule</p>
 </section>
 
 <div class="container">
 
-  <h2 class="section-title">Choose a Team</h2>
+    <h2 class="section-title">Choose a Team</h2>
     <div id="teamButtons" class="team-filter"></div>
 
     <div id="mainView">
@@ -351,13 +346,18 @@ matches:[
 },
 {
 week:4,
-type:"fixtures",
+type:"results",
 matches:[
-["Asda FC","Farmfoods Albion"],["AFC Homebargains","BM Albion"],
-["Co-Op Rovers","Sainsbury's FC"],["Londis United","Tesco FC"],
-["Aldi Rovers","M&S FC"],["B&Q Rovers","Sports Direct FC"],
-["Poundstretcher Rovers","Poundland FC"],["Iceland Albion","Lidl United"],
-["Argos United","AFC Morrisons"],["Smyths United","Pets At Home United"]
+["Asda FC","Farmfoods Albion",1,0],
+["Aldi Rovers","M&S FC",2,2],
+["Argos United","AFC Morrisons",1,4],
+["Iceland Albion","Lidl United",0,4],
+["Londis United","Tesco FC",0,0],
+["Smyths United","Pets At Home United",1,0],
+["B&Q Rovers","Sports Direct FC",2,2],
+["Co-Op Rovers","Sainsbury's FC",0,1],
+["Poundstretcher Rovers","Poundland FC",1,4],
+["AFC Homebargains","BM Albion",1,0]
 ]
 },
 {
@@ -454,7 +454,7 @@ for(let i = 0; i < 19; i++){
     });
 }
 
-function createMatch(match, type, week){
+function createMatch(match, type){
     const div = document.createElement("div");
     div.className = "match";
 
@@ -487,7 +487,7 @@ function createMatch(match, type, week){
 function renderPanel(container, gw){
     container.innerHTML = "";
     gw.matches.forEach(match => {
-        container.appendChild(createMatch(match, gw.type, gw.week));
+        container.appendChild(createMatch(match, gw.type));
     });
 }
 
@@ -503,7 +503,7 @@ function renderAccordion(container, weeks){
         content.className = "gameweek-content";
 
         gw.matches.forEach(match => {
-            content.appendChild(createMatch(match, gw.type, gw.week));
+            content.appendChild(createMatch(match, gw.type));
         });
 
         btn.onclick = function(){
@@ -560,7 +560,7 @@ function showTeam(team){
                 label.style.marginTop = "20px";
                 label.textContent = "Gameweek " + gw.week;
                 box.appendChild(label);
-                box.appendChild(createMatch(match, gw.type, gw.week));
+                box.appendChild(createMatch(match, gw.type));
             }
         });
     });
